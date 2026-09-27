@@ -1,13 +1,14 @@
 import './products.css';
-import { productCards } from '../../mocks/product-card.ts';
 import { useAppDispatch, useAppSelector } from '../../store/hook.ts';
 import { toggleFavorite } from '../../store/slices/favourite-slice.ts';
+import { toggleCartItem } from '../../store/slices/cart-slice.ts';
 
 export default function Products() {
   const dispatch = useAppDispatch();
   const favoriteIds = useAppSelector((state) => state.favorites.ids);
-
-  const productCardsList = productCards.map((product) => {
+  const productCardIds = useAppSelector((state) => state.cart.ids);
+  const products = useAppSelector((state) => state.products.products);
+  const productCardsList = products.map((product) => {
     return (
       <article key={product.id} className={'products__article'}>
         <button
@@ -19,8 +20,8 @@ export default function Products() {
             className={'products__image-favorite'}
             src={
               favoriteIds.includes(product.id)
-                ? '/images/favor-checked.svg'
-                : '/images/favor.svg'
+                ? '/images/favor-checked.png'
+                : '/images/favor.png'
             }
             alt="Избранное"
           />
@@ -37,7 +38,16 @@ export default function Products() {
         <span className={'products__category'}>{product.category}</span>
         <h3 className={'products__name'}>{product.name}</h3>
         <p className={'products__price'}>{product.price} ₽</p>
-        <button className={'products__button-cart'}>В корзину</button>
+        <button
+          onClick={() => {
+            dispatch(toggleCartItem(product.id));
+          }}
+          type="button"
+          className={'products__button-cart'}>
+          {productCardIds.includes(product.id)
+            ? 'Убрать из корзины'
+            : 'В корзину'}
+        </button>
       </article>
     );
   });

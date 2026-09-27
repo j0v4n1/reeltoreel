@@ -10,7 +10,7 @@ export default function Hero() {
           Reel to Real — портал в эпоху аналогового звука. Редкие виниловые пластинки и
           отреставрированная аппаратура для тех, кто ценит живой звук.
         </p>
-        <button className={'hero__button'}>исследовать коллекцию</button>
+        <button className={'hero__button button-common-alternative'}>исследовать коллекцию</button>
       </div>
     </section>
   );

@@ -1,9 +1,14 @@
 import './header.css';
-import { useState } from 'react';
 import Catalog from '../catalog/catalog.tsx';
 import * as React from 'react';
-import { useAppSelector } from '../../store/hook.ts';
-import FavoritesMiniMenu from '../favorites-mini-menu/favorites-mini-menu.tsx';
+import MiniMenu from '../mini-menu/mini-menu.tsx';
+import { useAppDispatch, useAppSelector } from '../../store/hook.ts';
+import {
+  setIsOpenCart,
+  setIsOpenFavorite,
+  setMenuType,
+} from '../../store/slices/mini-menu-slice.ts';
+import { useState } from 'react';
 
 interface HeaderProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,17 +16,21 @@ interface HeaderProps {
 
 export default function Header({ setIsOpen }: HeaderProps) {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false);
-  const [isOpenFavorites, setIsOpenFavorites] = useState(false);
   const [isOpenCollections, setIsOpenCollections] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   const favoritesCount: number = useAppSelector(
     (state) => state.favorites.ids
   ).length;
 
+  const menuType = useAppSelector((state) => state.miniMenu.menuType);
+  const cartItemCount = useAppSelector((state) => state.cart.ids).length;
+
   return (
     <header className={'header'}>
       <Catalog isOpen={isOpenCatalog} />
-      <FavoritesMiniMenu isOpen={isOpenFavorites} />
+      <MiniMenu />
       <div className={'header__top'}>
         <a className={'header__logo'} href={'#'}>
           Reel to real
@@ -37,13 +46,45 @@ export default function Header({ setIsOpen }: HeaderProps) {
         <div className={'header__actions'}>
           <button
             className={'header__action'}
-            onClick={() => setIsOpenFavorites(!isOpenFavorites)}>
+            onClick={() => {
+              if (menuType === 'cart') {
+                dispatch(setIsOpenCart(false));
+                setTimeout(() => {
+                  dispatch(setIsOpenFavorite(true));
+                  dispatch(setMenuType('favorite'));
+                }, 1000);
+              } else if (menuType === 'favorite') {
+                dispatch(setIsOpenFavorite(false));
+                dispatch(setMenuType(undefined));
+              } else if (menuType === undefined) {
+                dispatch(setIsOpenFavorite(true));
+                dispatch(setMenuType('favorite'));
+              }
+            }}>
             <span className={'header__action-count'}>{favoritesCount}</span>
             <img src="/images/favor.svg" alt="Избранное" />
           </button>
-          <button className={'header__action'}>
+          <button
+            onClick={() => {
+              if (menuType === 'favorite') {
+                dispatch(setIsOpenFavorite(false));
+                setTimeout(() => {
+                  dispatch(setIsOpenCart(true));
+                  dispatch(setMenuType('cart'));
+                }, 1000);
+              } else if (menuType === 'cart') {
+                dispatch(setIsOpenCart(false));
+                setTimeout(() => {
+                  dispatch(setMenuType(undefined));
+                }, 1000);
+              } else if (menuType === undefined) {
+                dispatch(setIsOpenCart(true));
+                dispatch(setMenuType('cart'));
+              }
+            }}
+            className={'header__action'}>
             <span className={'header__action-count header__action-count--cart'}>
-              4
+              {cartItemCount}
             </span>
             <img src="/images/cart.svg" alt="Корзина" />
           </button>

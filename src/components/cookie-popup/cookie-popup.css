@@ -1,0 +1,39 @@
+.cookie-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  width: 100%;
+  max-width: 400px;
+  padding: 24px;
+}
+
+.cookie-popup__title {
+  text-transform: uppercase;
+  font-family: 'Bebas Neue Cyrillic', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  margin: 0 0 8px;
+}
+
+.cookie-popup__subtitle {
+  margin: 0 0 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.cookie-popup__button {
+  border: 2px solid #2563eb;
+  padding: 20px 0 20px;
+  background: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #2563eb;
+  cursor: pointer;
+}

@@ -1,4 +1,6 @@
-export const productCards = [
+import { type ProductCard } from '../store/slices/product-slice';
+
+const productCards = [
   {
     id: 1,
     image: '/images/vinil_player.png',
@@ -40,3 +42,11 @@ export const productCards = [
     isNew: false,
   },
 ];
+
+export const getProducts = (): Promise<ProductCard[]> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(productCards);
+    }, 1000);
+  });
+};

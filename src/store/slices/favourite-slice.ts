@@ -13,7 +13,7 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     toggleFavorite: (state, action: PayloadAction<number>) => {
-      const id: number = action.payload;
+      const id = action.payload;
 
       const isFavorite = state.ids.includes(id);
 

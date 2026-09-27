@@ -1,0 +1,40 @@
+.button-common {
+  background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #2563eb;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.button-common:hover {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.button-common:active {
+  color: #ffffff;
+  background: #1e4fdb;
+}
+
+.button-common-alternative {
+  background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #2563eb;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.button-common-alternative:hover {
+  outline: 1px solid #ffffff;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.button-common-alternative:active {
+  color: #ffffff;
+  background: #1e4fdb;
+}
