@@ -1,0 +1,138 @@
+.mini-menu {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  border: 1px solid #e0e0e0;
+  padding: 18px 12px;
+  background: white;
+  width: 340px;
+  height: 700px;
+  top: 97px;
+  right: 0;
+  position: absolute;
+  border-top: none;
+  transform: translateX(100%);
+  transition: 1s ease;
+}
+
+.mini-menu--open {
+  transform: translateX(0);
+}
+
+.mini-menu__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.mini-menu__title,
+.mini-menu__count,
+.mini-menu__product-card-title,
+.mini-menu__product-card-count,
+.mini-menu__product-card-price,
+.mini-menu__summ,
+.mini-menu__summ-price {
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  line-height: 122%;
+}
+.mini-menu__title {
+  margin: 0;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: flex;
+  gap: 4px;
+}
+
+.mini-menu__count {
+  color: #666666;
+  font-size: 12px;
+  transform: translateY(-4px);
+}
+
+.mini-menu__button-close,
+.mini-menu__product-card-button-close {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.mini-menu__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mini-menu__product-card {
+  border: 1px solid #e0e0e0;
+  padding: 8px;
+}
+
+.mini-menu__product-card-top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.mini-menu__product-card-image {
+  border: 1px solid #e0e0e0;
+  width: 50px;
+  height: 50px;
+}
+
+.mini-menu__product-card-title {
+  line-height: 140%;
+  font-weight: 500;
+  margin: 0;
+}
+
+.mini-menu__product-card-bottom {
+  display: flex;
+  align-items: center;
+}
+
+.mini-menu__product-card-count,
+.mini-menu__product-card-increase-count,
+.mini-menu__product-card-decrease-count {
+  font-weight: 500;
+  font-size: 12px;
+  border: none;
+  line-height: 100%;
+  background: none;
+}
+
+.mini-menu__product-card-increase-count,
+.mini-menu__product-card-decrease-count {
+  cursor: pointer;
+}
+
+.mini-menu__product-card-counter {
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+  max-width: 84px;
+  background-color: #e0e0e0;
+  padding: 8px;
+  align-items: center;
+}
+
+.mini-menu__product-card-price {
+  font-weight: 500;
+  margin: 0;
+  margin-left: auto;
+}
+
+.mini-menu__bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  margin-top: auto;
+}
+
+.mini-menu__summ,
+.mini-menu__summ-price {
+  text-transform: uppercase;
+  font-size: 16px;
+}
