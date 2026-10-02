@@ -8,6 +8,7 @@ export default function Products() {
   const favoriteIds = useAppSelector((state) => state.favorites.ids);
   const productCardIds = useAppSelector((state) => state.cart.ids);
   const products = useAppSelector((state) => state.products.products);
+  
   const productCardsList = products.map((product) => {
     return (
       <article key={product.id} className={'products__article'}>
@@ -32,7 +33,7 @@ export default function Products() {
         </div>
         <img
           className={'products__image'}
-          src={product.image}
+          src={`http://localhost:8080${product.image}`}
           alt={product.alt}
         />
         <span className={'products__category'}>{product.category}</span>

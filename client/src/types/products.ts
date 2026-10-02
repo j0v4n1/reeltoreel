@@ -1,5 +1,5 @@
 export type ProductCard = {
-  id: number;
+  id: string;
   image: string;
   alt: string;
   category: string;

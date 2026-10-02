@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 type СartState = {
-  ids: number[];
+  ids: string[];
 };
 
 const initialState: СartState = {
@@ -12,7 +12,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    toggleCartItem: (state, action: PayloadAction<number>) => {
+    toggleCartItem: (state, action: PayloadAction<string>) => {
       const ProductId = action.payload;
 
       const isInCart = state.ids.includes(ProductId);

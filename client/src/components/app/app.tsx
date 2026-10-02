@@ -10,9 +10,9 @@ import Modal from '../modal/modal.tsx';
 import CookiePopup from '../cookie-popup/cookie-popup.tsx';
 import Loading from '../loading/loading.tsx';
 import { useEffect, useState } from 'react';
-import { getProducts } from '../../mocks/product-card.ts';
 import { useAppDispatch, useAppSelector } from '../../store/hook.ts';
-import { setProducts, setLoading } from '../../store/slices/product-slice.ts';
+import { fetchProducts } from '../../store/slices/product-slice.ts';
+import NotFoundPage from '../not-found-page/not-found-page.tsx';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,10 +35,7 @@ function App() {
   }, [isModalOpen]);
 
   useEffect(() => {
-    dispatch(setLoading('loading'));
-    getProducts().then((products) => {
-      dispatch(setProducts(products));
-    });
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   return status === 'succeeded' ? (
@@ -51,6 +48,14 @@ function App() {
         <Products />
         <Subscribe />
       </main>
+      <Footer />
+      {isModalOpen ? <Modal setIsOpen={setIsModalOpen} /> : <></>}
+      <CookiePopup />
+    </div>
+  ) : status === 'failed' ? (
+    <div className="app">
+      <Header setIsOpen={setIsModalOpen} />
+      <NotFoundPage />
       <Footer />
       {isModalOpen ? <Modal setIsOpen={setIsModalOpen} /> : <></>}
       <CookiePopup />
